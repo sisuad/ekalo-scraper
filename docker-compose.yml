@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  kiddoworksheets-scraper:
+    build: .
+    container_name: kiddoworksheets-scraper
+    volumes:
+      # Mount the worksheets directory to persist downloaded files
+      - ./worksheets:/app/worksheets
+      # Mount the JSON output file
+      - ./worksheets.json:/app/worksheets.json
+    environment:
+      # You can override these in a .env file
+      - DOWNLOAD_PDFS=true
+    restart: "no"  # Run once and stop
+    
+    # Uncomment below if you want to run in interactive mode
+    # stdin_open: true
+    # tty: true

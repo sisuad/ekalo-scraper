@@ -1,0 +1,4 @@
+# Ignore all worksheets except samples
+worksheets/*
+!worksheets/sample-*.pdf
+!worksheets/README.md
