@@ -83,3 +83,11 @@ environment:
 - `requests` - HTTP requests
 - `beautifulsoup4` - HTML/XML parsing
 - `lxml` - XML parser backend
+
+## Credits
+
+This project is a fork of [ekalo-scraper](https://github.com/Abenezer46/ekalo-scraper) by Abenezer46. Special thanks for the original work.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

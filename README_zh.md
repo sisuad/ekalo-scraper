@@ -83,3 +83,11 @@ environment:
 - `requests` - 处理 HTTP 请求
 - `beautifulsoup4` - 解析 HTML/XML
 - `lxml` - XML 解析后端
+
+## 致谢
+
+本项目是基于 Abenezer46 的 [ekalo-scraper](https://github.com/Abenezer46/ekalo-scraper) 进行的修改和优化。特别感谢原作者的贡献。
+
+## 许可证
+
+本项目基于 [MIT License](LICENSE) 授权。
