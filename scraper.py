@@ -19,8 +19,8 @@ CATEGORY_SITEMAP = "https://www.kiddoworksheets.com/wpdmcategory-sitemap.xml"
 # data grouped by category
 data_log = {}
 
-# 👇 toggle this flag
-DOWNLOAD_PDFS = True   # True = download PDFs, False = just metadata
+DOWNLOAD_PDFS = os.getenv("DOWNLOAD_PDFS", "false").lower() == "true"
+DOWNLOAD_PNGS = os.getenv("DOWNLOAD_PNGS", "true").lower() == "true"
 
 
 def get_soup(url, parser="xml"):
@@ -84,8 +84,15 @@ def process_worksheet(worksheet_url, categories):
                 "file_path": filepath if DOWNLOAD_PDFS else None
             }
 
+            ext = file_extension.lower()
+            should_download = False
+            if ext == '.pdf' and DOWNLOAD_PDFS:
+                should_download = True
+            elif ext == '.png' and DOWNLOAD_PNGS:
+                should_download = True
+            
             # download file if enabled
-            if DOWNLOAD_PDFS:
+            if should_download:
                 resp = requests.get(worksheet_url, headers=HEADERS)
                 if resp.status_code == 200:
                     with open(filepath, "wb") as f:
@@ -96,7 +103,7 @@ def process_worksheet(worksheet_url, categories):
                 else:
                     print(f"❌ Failed to download: {worksheet_url}")
             else:
-                print(f"📝 Found direct file: {filename}{file_extension} in category: {category}")
+                print(f"📝 Found direct file: {filename}{file_extension} in category: {category} (Download skipped)")
 
             data_log[category].append(entry)
             return
